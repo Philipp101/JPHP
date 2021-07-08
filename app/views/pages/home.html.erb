@@ -1,2 +1,29 @@
 <h1>🦀</h1>
 <h1>Hi I am the HP of Jo, but I am not quite finished yet, zorrreee!</h1>
+
+
+<div class="container ml-0">
+  <div class= 'banner'>
+    <div>
+      <h1>Welcome to "Wonderful Cocktails"</h1>
+      <p>Dive in in our amazing collection of luxury recipes or create your own!</p>
+        <div class="btn btn-ghost">
+          <%= link_to "create new Cocktail", new_event_path  %>
+        </div>
+    </div>
+  </div>
+  <br>
+  <ul><div class="cards">
+    <% @events.each do |event| %>
+      <% if event.photo.attached? %>
+          <li><div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path cocktail.photo.key %>)">
+            <%= link_to event.eventtext, event_path(event), class: "my-card" %>
+          </div></li>
+      <% else %>
+          <li><div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))">
+            <%= link_to event.eventtext, event_path(event), class: "my-card" %>
+          </div></li>
+      <% end %>
+    <% end %>
+  </div></ul>
+</div>
