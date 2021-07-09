@@ -1,0 +1,10 @@
+
+      <% if @event.photo.attached? %>
+        <div><%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fill %></div>
+      <% else %>
+        <div class="show-image mb-3 d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)); color: rgba(0,0,0,0.5)">
+          <p><em>No image uploaded.</em></p>
+        </div>
+      <% end %>
+      <h2><%= @event.title %></h2>
+

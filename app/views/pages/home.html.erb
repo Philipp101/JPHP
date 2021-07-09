@@ -16,7 +16,7 @@
   <ul><div class="cards">
     <% @events.each do |event| %>
       <% if event.photo.attached? %>
-          <li><div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path cocktail.photo.key %>)">
+          <li><div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.photo.key %>)">
             <%= link_to event.eventtext, event_path(event), class: "my-card" %>
           </div></li>
       <% else %>
@@ -26,4 +26,7 @@
       <% end %>
     <% end %>
   </div></ul>
+  <div>
+    <%= link_to "Add new Event", new_event_path, class: "btn btn-gradient" %>
+  </div>
 </div>
