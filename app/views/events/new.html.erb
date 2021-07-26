@@ -13,8 +13,8 @@
           <label class="btn btn-success">
             + Upload pictures (optional)
             <span style="display:none;">
-              <%= f.input :photo, as: :file %>
-              <%= cl_image_upload_tag(:image_id, :html => { :multiple => true }) %>
+              <%= f.label :photos %>
+              <%= f.file_field :photos, :multiple => true %>
             </span>
           </label>
           <br>
@@ -25,4 +25,3 @@
     </div>
   </div>
 </div>
-
