@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  require 'mini_magick'
+
   def index
     @events = Event.all
   end
@@ -13,6 +15,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+
+    params[:event][:photos].each do |photo|
+      mini_image = MiniMagick::Image.new(photo.tempfile.path)
+      mini_image.resize '1200x1200'
+    end
     if @event.save
       redirect_to event_path(@event)
     else

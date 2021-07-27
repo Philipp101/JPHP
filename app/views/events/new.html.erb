@@ -10,13 +10,13 @@
           <%= f.input :eventtext %>
           <%= f.input :eventdate %>
           <%= f.input :links %>
-          <label class="btn btn-success">
-            + Upload pictures (optional)
-            <span style="display:none;">
+          <div data-controller="multi-upload">
+            <div class="photos">
               <%= f.label :photos %>
-              <%= f.file_field :photos, :multiple => true %>
-            </span>
-          </label>
+              <%= f.file_field :photos, :multiple => true, :data => {:action => "multi-upload#addFile"} %>
+            </div>
+            <div data-multi-upload-target="files"></div>
+          </div>
           <br>
           <%= f.button :submit, "Add Event", class: "btn btn-success" %>
         <% end %>
