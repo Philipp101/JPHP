@@ -2,7 +2,7 @@
       <% if @event.photos.attached? %>
         <div>
           <% @event.photos.each do |photo| %>
-            <%= cl_image_tag(photo.key, :width => 200) %>
+            <%= cl_image_tag(photo.key) %>
           <% end %>
         </div>
       <% else %>
