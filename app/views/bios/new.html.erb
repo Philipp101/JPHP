@@ -1,0 +1,18 @@
+<br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div class="costume-form p-4 mt-4 mb-4">
+        <h2>ADD NU BIO</h2>
+        <%= simple_form_for [@bio] do |f| %>
+          <%= f.input :bioyear %>
+          <%= f.input :title %>
+          <%= f.input :institute %>
+          <%= f.input :place %>
+          <br>
+          <%= f.button :submit, "ADD", class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,19 @@
-<h1>🦀</h1>
-<h1>Hi I am the HP of Jo, but I am not quite finished yet, zorrreee!</h1>
-
-
-<div class="container ml-0">
-  <div class= 'banner'>
-    <div>
-      <h1>Welcome to "Wonderful Cocktails"</h1>
-      <p>Dive in in our amazing collection of luxury recipes or create your own!</p>
-        <div class="btn btn-ghost">
-          <%= link_to "create new Cocktail", new_event_path  %>
-        </div>
+<div class="container">
+    <div class="logo mb-5" class="mb-5">
     </div>
+      <div>
+        <%= link_to "JOPENCA.COM", root_path, class: "btn btn-success" %>
+      </div>
+      <div>
+        <%= link_to "NEWS", events_path, class: "btn btn-gradient" %>
+      </div>
+      <div>
+        <%= link_to "BIO", bios_path, class: "btn btn-gradient" %>
+      </div>
+      <div>
+        <%= link_to "CONTACT", bios_path, class: "btn btn-gradient" %>
+      </div>
+      <div>
+        <%= link_to "BIB", bibs_path, class: "btn btn-gradient" %>
+      </div>
   </div>
-  <br>
-  <ul><div class="cards">
-    <% @events.each do |event| %>
-      <% if event.photos.attached? %>
-          <li><div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.photos.first.key %>)">
-            <%= link_to event.eventtext, event_path(event), class: "my-card" %>
-          </div></li>
-      <% else %>
-          <li><div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))">
-            <%= link_to event.eventtext, event_path(event), class: "my-card" %>
-          </div></li>
-      <% end %>
-    <% end %>
-  </div></ul>
-  <div>
-    <%= link_to "Add new Event", new_event_path, class: "btn btn-gradient" %>
-  </div>
-</div>
