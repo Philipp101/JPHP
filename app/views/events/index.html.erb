@@ -1,40 +1,28 @@
-<div class="container ml-0">
+
   <div class= 'banner'></div>
   <br>
-  <div>
-    <ul>
+  <div class="container">
       <div class="cards">
         <% @events.each do |event| %>
-          <ul>
             <% if event.photos.attached? %>
-              <li>
-                <div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.photos.first.key %>)">
-                  <%= link_to event.title, event_path(event), class: "my-card" %>
+                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.photos.first.key %>)">
+                  <h1><strong> <%= link_to event.title, event_path(event), class: "" %> </strong></h1>
+                  <p> <%= event.eventdate %> </p>
+                  <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
+                  <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
                 </div>
-                <div> <%= event.eventdate %> </div>
-              </li>
             <% else %>
-              <li>
-                <div class="my-card-background" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))">
-                  <%= link_to event.title, event_path(event), class: "my-card" %>
+                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))">
+                  <h1><strong> <%= link_to event.title, event_path(event), class: "" %> </strong></h1>
+                  <p> <%= event.eventdate %> </p>
+                  <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
+                  <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
                 </div>
-                <div> <%= event.eventdate %> </div>
-              </li>
             <% end %>
-
-
-            <li>
-              <div class="grid-item">
-                <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
-                <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
-              </div>
-            </li>
-          </ul>
         <% end %>
       </div>
-    </ul>
   </div>
   <div>
     <%= link_to "ADD 1", new_event_path, class: "btn btn-gradient" %>
   </div>
-</div>
+
