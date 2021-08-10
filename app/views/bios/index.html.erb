@@ -1,4 +1,4 @@
-
+<%= render 'shared/navbar' %>
 <div class="container ml-0">
   <div class= 'banner'></div>
   <br>
@@ -13,8 +13,10 @@
             <li> <%= bio.place %> </li>
             <li>
               <div class="grid-item">
-                <button type="button" class="btn btn-light"> <%= link_to "EDIT", edit_bio_path(bio) %> </button>
-                <button type="button" class="btn btn-danger"> <%= link_to "DEL", bio_path(bio), method: :delete, data: { confirm: "SURE?" } %> </button>
+                <% if user_signed_in? %>
+                  <button type="button" class="btn btn-light"> <%= link_to "EDIT", edit_bio_path(bio) %> </button>
+                  <button type="button" class="btn btn-danger"> <%= link_to "DEL", bio_path(bio), method: :delete, data: { confirm: "SURE?" } %> </button>
+                <% end %>
               </div>
             </li>
           </ul>
@@ -22,7 +24,9 @@
       </div>
     </ul>
   </div>
+  <% if user_signed_in? %>
   <div>
     <%= link_to "ADD 1", new_bio_path, class: "btn btn-gradient" %>
   </div>
+  <% end %>
 </div>

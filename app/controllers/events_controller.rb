@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   require 'mini_magick'
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @events = Event.all
@@ -44,7 +45,7 @@ class EventsController < ApplicationController
   def destroy
     find_event
     @event.destroy
-    flash.notice = "DELETED"
+    flash.alert = "DELETED"
     redirect_to events_path
   end
 

@@ -1,4 +1,4 @@
-
+<%= render 'shared/navbar' %>
   <div class= 'banner'></div>
   <br>
   <div class="container">
@@ -8,21 +8,27 @@
                 <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.photos.first.key %>)">
                   <h1><strong> <%= link_to event.title, event_path(event), class: "" %> </strong></h1>
                   <p> <%= event.eventdate %> </p>
-                  <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
-                  <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
+                  <% if user_signed_in? %>
+                    <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
+                    <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
+                  <% end %>
                 </div>
             <% else %>
                 <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))">
                   <h1><strong> <%= link_to event.title, event_path(event), class: "" %> </strong></h1>
                   <p> <%= event.eventdate %> </p>
-                  <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
-                  <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
+                  <% if user_signed_in? %>
+                    <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
+                    <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
+                  <% end %>
                 </div>
             <% end %>
         <% end %>
       </div>
   </div>
+  <% if user_signed_in? %>
   <div>
     <%= link_to "ADD 1", new_event_path, class: "btn btn-gradient" %>
   </div>
+  <% end %>
 
