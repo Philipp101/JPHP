@@ -1,13 +1,25 @@
 <%= render 'shared/navbar' %>
-  <div class= 'banner'></div>
+<br>
+<div class='container'>
+
+    <%= form_tag events_path, method: :get do %>
+      <div class='search'>
+        <%= text_field_tag :query, params[:query], class: "form-control"%>
+        <%= button_tag type: 'submit', class: "btn btn-outline-primary postfix ml-1" do %>
+          <i class="fas fa-search" aria-hidden="true"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+</div>
   <br>
   <div class="container">
       <div class="cards">
         <% @events.each do |event| %>
             <% if event.photos.attached? %>
                 <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.photos.first.key %>)">
-                  <h1><strong> <%= link_to event.title, event_path(event), class: "" %> </strong></h1>
-                  <p> <%= event.eventdate %> </p>
+                  <h1 class="cardtext"><strong> <%= link_to event.title, event_path(event), class: "" %> </strong></h1>
+                  <p class="cardtext"> <%= event.eventdate %> </p>
                   <% if user_signed_in? %>
                     <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_event_path(event) %> </button>
                     <button type="button" class="btn btn-danger"> <%= link_to "DEL", event_path(event), method: :delete, data: { confirm: "SURE?" } %></button>
@@ -31,4 +43,3 @@
     <%= link_to "ADD 1", new_event_path, class: "btn btn-gradient" %>
   </div>
   <% end %>
-

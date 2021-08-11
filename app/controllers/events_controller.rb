@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    find_event
+    @event = Event.new(event_params)
     params[:event][:photos].each do |photo|
       mini_image = MiniMagick::Image.new(photo.tempfile.path)
       mini_image.resize '800x800'

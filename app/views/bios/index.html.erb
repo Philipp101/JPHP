@@ -5,22 +5,17 @@
   <div>
     <ul>
       <div class="cards">
-        <% @bios.each do |bio| %>
-          <ul>
-            <li> <%= bio.bioyear %> </li>
-            <li> <%= bio.title %> </li>
-            <li> <%= bio.institute %> </li>
-            <li> <%= bio.place %> </li>
-            <li>
+        <ul>
+          <% @bios.each do |bio| %>
+            <li> <%= bio.bioyear %>  |  <%= bio.title %>  |  <%= bio.institute %>  |  <%= bio.place %> </li>
               <div class="grid-item">
                 <% if user_signed_in? %>
                   <button type="button" class="btn btn-light"> <%= link_to "EDIT", edit_bio_path(bio) %> </button>
                   <button type="button" class="btn btn-danger"> <%= link_to "DEL", bio_path(bio), method: :delete, data: { confirm: "SURE?" } %> </button>
                 <% end %>
               </div>
-            </li>
-          </ul>
         <% end %>
+      </ul>
       </div>
     </ul>
   </div>

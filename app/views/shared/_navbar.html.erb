@@ -1,25 +1,13 @@
 <div class="navbar">
-  <div class="nav-left">
-    <span><%= link_to cl_image_tag("v1605715062/Costume_Carousel_black_jnj4lb.png", width: 150, height: 40), root_path %></span>
-    <%= form_tag events_path, method: :get do %>
-      <div class= "search">
-        <%= text_field_tag :query, params[:query], class: "form-control"%>
-        <%= button_tag type: 'submit', class: "btn btn-success postfix ml-1" do %>
-          <i class="fas fa-search" aria-hidden="true"></i>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
-  <div>
-    <%= link_to "NEWS", events_path, class: "my-navbar-action" %> |
-    <%= link_to "BIO", bios_path, class: "my-navbar-action"%>
+  <div class="navbar-collapse">
+    <%= link_to "JOPENCA.COM", root_path, class: "btn btn-success" %>
+    <%= link_to "NEWS", events_path, class: ["btn btn-primary", ("active" if request.path == events_path)] %>
+    <%= link_to "BIO", bios_path, class: ["btn btn-warning", ("active" if request.path == bios_path)]%>
+    <%= link_to "CONTACT", contact_path, class: ["btn btn-danger", ("active" if request.path == contact_path)] %>
     <% if user_signed_in? %>
-      |<span class="my-navbar-action">User: <%= current_user&.email %></span>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      <%= link_to "LOGOUT USER #{current_user&.email}", destroy_user_session_path, method: :delete, class: "btn btn-info" %>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+        <%= link_to "LOGIN", new_user_session_path, class: "btn btn-info" %>
     <% end %>
   </div>
 </div>
