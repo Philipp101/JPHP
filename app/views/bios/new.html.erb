@@ -10,6 +10,7 @@
           <%= f.input :title %>
           <%= f.input :institute %>
           <%= f.input :place %>
+          <%= f.input :category, :collection => ['Solo Exhibition', 'Group Exhibition', 'Awards'] %>
           <br>
           <%= f.button :submit, "ADD", class: "btn btn-success" %>
         <% end %>
