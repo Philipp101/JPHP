@@ -1,4 +1,4 @@
-.eventphotos {
+/*.eventphotos {
   width: 100%;
   display: flex !important;
   justify-content: center !important;
@@ -9,7 +9,7 @@
 }
 
 
-.carousel{
+/*.carousel{
   width: auto;
   max-height: 100vh;
 }
@@ -17,6 +17,11 @@
 .carousel-inner{
   width: auto;
   max-height: 100vh;
+}*/
+
+.carousel-button {
+  color: black !important;
+  font-weight: bold;
 }
 
 .carousel-item {

@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   require 'mini_magick'
+  require 'catalog'
+  require 'attachment'
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -8,18 +10,18 @@ class EventsController < ApplicationController
 
   def show
     find_event
+    @catalog = Catalog.where(event_id: @event)
   end
 
   def new
+    @catalog = Catalog.all
+    @attachments = Attachment.all
     @event = Event.new
   end
 
   def create
     @event = Event.new(event_params)
-    params[:event][:photos].each do |photo|
-      mini_image = MiniMagick::Image.new(photo.tempfile.path)
-      mini_image.resize '800x800'
-    end
+
     if @event.save
       flash.notice = "CREATED"
       redirect_to event_path(@event)
@@ -57,5 +59,9 @@ class EventsController < ApplicationController
 
   def find_event
     @event = Event.find(params[:id])
+  end
+
+  def find_attachment
+    @attachment = Attachment.find(params[:id])
   end
 end

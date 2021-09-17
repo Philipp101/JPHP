@@ -1,0 +1,20 @@
+<%= render 'shared/navbar' %>
+<br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div class="costume-form p-4 mt-4 mb-4">
+        <h2>Add a new Attachment</h2>
+
+        <%= simple_form_for [@attachment] do |f| %>
+          <%= f.label :photo %>
+          <%= f.file_field :photo %>
+          <%= f.input :caption %>
+          <br>
+          <%= f.button :submit, "Add Attachment", class: "btn btn-success" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

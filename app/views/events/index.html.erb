@@ -16,8 +16,8 @@
   <div class="container">
       <div class="cards">
         <% @events.each do |event| %>
-            <% if event.photos.attached? %>
-                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.photos.first.key %>)">
+            <% if event.attachments.first.photo.attached? %>
+                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path event.attachments.first.photo.key %>)">
                   <h1 class="cardtext"><strong> <%= link_to event.title, event_path(event), class: "" %> </strong></h1>
                   <p class="cardtext"> <%= event.eventdate %> </p>
                   <% if user_signed_in? %>

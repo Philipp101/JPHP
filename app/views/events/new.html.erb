@@ -11,13 +11,7 @@
           <%= f.input :eventtext %>
           <%= f.input :eventdate %>
           <%= f.input :links %>
-          <div data-controller="multi-upload">
-            <div class="photos">
-              <%= f.label :photos %>
-              <%= f.file_field :photos, :multiple => true, :data => {:action => "multi-upload#addFile"} %>
-            </div>
-            <div data-multi-upload-target="files"></div>
-          </div>
+          <%= f.association :attachments, collection: @attachments, input_html: { multiple: true } %>
           <br>
           <%= f.button :submit, "Add Event", class: "btn btn-success" %>
         <% end %>

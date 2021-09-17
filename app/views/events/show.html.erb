@@ -1,24 +1,27 @@
 <%= render 'shared/navbar' %>
 <br>
 <div class= "container">
-  <% if @event.photos.attached? %>
-    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel" data-bs-interval="false">
+  <% if Attachment.includes(@event).count > 1 %>
+    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-interval="false" data-bs-interval="false">
       <div class="carousel-inner">
-        <% @event.photos.each_with_index do |photo,i| %>
-          <div class="carousel-item <%= "active" if i==0 %>" style="background-image: url(<%= cloudinary_url(photo.key) %>)" ></div>
+        <% @event.attachments.each_with_index do |attachment,i| %>
+          <div class="carousel-item <%= "active" if i==0 %>" style="background-image: url(<%= cloudinary_url(attachment.photo.key) %>)" ></div>
         <% end %>
       </div>
-      <div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="">PREV</span>
+          <span class="carousel-button"><</span>
         </a>
-      </div>
-      <div>
         <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="">NEXT</span>
+          <span class="carousel-button">></span>
         </a>
+    </div>
+  <% elsif Attachment.includes(@event).count == 1 %>
+    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-interval="false" data-bs-interval="false">
+      <div class="carousel-inner">
+        <% @event.attachments.each_with_index do |attachment,i| %>
+          <div class="carousel-item <%= "active" if i==0 %>" style="background-image: url(<%= cloudinary_url(attachment.photo.key) %>)" ></div>
+        <% end %>
       </div>
-
     </div>
   <% else %>
     <div class="show-image mb-3 d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)); color: rgba(0,0,0,0.5)">
@@ -26,10 +29,9 @@
     </div>
   <% end %>
   <br>
-
-
-    <div class="eventtext">
-      <h2><%= @event.title %></h2>
-      <p><%= @event.eventtext %></p>
-    </div>
+  <br>
+  <div class="eventtext">
+    <h2><%= @event.title %></h2>
+    <p><%= @event.eventtext %></p>
+  </div>
 </div>

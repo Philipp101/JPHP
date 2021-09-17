@@ -1,0 +1,31 @@
+<%= render 'shared/navbar' %>
+<br>
+  <div class="container">
+      <div class="cards">
+        <% @attachments.each do |attachment| %>
+            <% if attachment.photo.attached? %>
+                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= cl_image_path attachment.photo.key %>)">
+                  <p class="cardtext"> <%= attachment.caption %> </p>
+                  <% if user_signed_in? %>
+                    <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_attachment_path(attachment) %> </button>
+                    <button type="button" class="btn btn-danger"> <%= link_to "DEL", attachment_path(attachment), method: :delete, data: { confirm: "SURE?" } %></button>
+                  <% end %>
+                </div>
+            <% else %>
+                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))">
+                  <p class="cardtext"> <%= attachment.caption %> </p>
+                  <% if user_signed_in? %>
+                    <button type="button" class="btn btn-light" > <%= link_to "EDIT", edit_attachment_path(attachment) %> </button>
+                    <button type="button" class="btn btn-danger"> <%= link_to "DEL", attachment_path(attachment), method: :delete, data: { confirm: "SURE?" } %></button>
+                  <% end %>
+                </div>
+            <% end %>
+        <% end %>
+      </div>
+  </div>
+  <% if user_signed_in? %>
+  <div>
+    <%= link_to "ADD 1", new_attachment_path, class: "btn btn-gradient" %>
+  </div>
+  <% end %>
+
